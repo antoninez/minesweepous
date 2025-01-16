@@ -17,6 +17,12 @@ function initializeGame() {
     isFirstClick = true;
     document.body.style.animation = 'psychedelicBackground 5s linear infinite';
 
+    // Supprimer le message de fin de partie s'il existe
+    const gameInfo = document.getElementById('game-info');
+    if (gameInfo) {
+        gameInfo.remove();
+    }
+
     // Créer la grille
     for (let i = 0; i < gridSize * gridSize; i++) {
         const cell = document.createElement('div');
