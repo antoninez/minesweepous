@@ -1,0 +1,206 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    animation: psychedelicBackground 5s linear infinite;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: dimensionalShift 10s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-gap: 1px;
+    background-color: #ccc;
+    border: 1px solid #999;
+    margin-bottom: 20px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-style: preserve-3d;
+    animation: crazyRotate 3s linear infinite;
+}
+
+.cell:hover {
+    transform: scale3d(1.5, 1.5, 1.5) rotate3d(1, 1, 1, 45deg);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.cell.revealed {
+    background-color: #fff;
+    animation: flip3D 0.6s ease-out forwards, textGlitch 1s linear infinite;
+}
+
+.cell.mine {
+    background-color: #f00;
+    animation: explode 0.5s infinite, crazyRotate 1s linear infinite;
+}
+
+.cell.flag {
+    background-color: #ff0;
+    animation: bounce3D 0.5s ease infinite, spin3D 2s linear infinite;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#game-info {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: pulse 1s infinite, rainbow 5s linear infinite, textGlitch 2s linear infinite;
+}
+
+#reset {
+    animation: dimensionalShift 5s ease-in-out infinite, textGlitch 2s linear infinite;
+}
+
+#mine-count {
+    animation: textGlitch 1s linear infinite, bounce 2s ease-in-out infinite;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.win-animation {
+    animation: rainbow 2s linear infinite, spin3D 1s linear infinite, crazyRotate 2s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    56% { color: blue; }
+    70% { color: indigo; }
+    84% { color: violet; }
+    100% { color: red; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-30px); }
+    60% { transform: translateY(-15px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes flip {
+    0% { transform: perspective(400px) rotateY(0); }
+    100% { transform: perspective(400px) rotateY(360deg); }
+}
+
+@keyframes jello {
+    0%, 11.1%, 100% { transform: none; }
+    22.2% { transform: skewX(-12.5deg) skewY(-12.5deg); }
+    33.3% { transform: skewX(6.25deg) skewY(6.25deg); }
+    44.4% { transform: skewX(-3.125deg) skewY(-3.125deg); }
+    55.5% { transform: skewX(1.5625deg) skewY(1.5625deg); }
+    66.6% { transform: skewX(-0.78125deg) skewY(-0.78125deg); }
+    77.7% { transform: skewX(0.390625deg) skewY(0.390625deg); }
+    88.8% { transform: skewX(-0.1953125deg) skewY(-0.1953125deg); }
+}
+
+@keyframes reveal {
+    from { transform: scale(0.1); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes flag {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes explode {
+    0% { transform: scale(1); background-color: #f00; }
+    50% { transform: scale(1.2); background-color: #ff0; }
+    100% { transform: scale(1); background-color: #f00; }
+}
+
+@keyframes flip3D {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(180deg); }
+}
+
+@keyframes bounce3D {
+    0%, 100% { transform: translateZ(0); }
+    50% { transform: translateZ(30px); }
+}
+
+@keyframes spin3D {
+    0% { transform: rotateY(0deg) rotateX(0deg); }
+    100% { transform: rotateY(360deg) rotateX(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateZ(-20px); }
+    50% { transform: translateZ(20px); }
+}
+
+@keyframes crazyRotate {
+    0% { transform: rotate3d(1, 1, 1, 0deg); }
+    100% { transform: rotate3d(1, 1, 1, 360deg); }
+}
+
+@keyframes psychedelicBackground {
+    0% { background: radial-gradient(circle, red, blue, green); }
+    33% { background: radial-gradient(circle, yellow, purple, orange); }
+    66% { background: radial-gradient(circle, pink, cyan, magenta); }
+    100% { background: radial-gradient(circle, red, blue, green); }
+}
+
+@keyframes dimensionalShift {
+    0%, 100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); }
+    25% { transform: perspective(1000px) rotateX(180deg) rotateY(0deg) scale3d(0.5, 2, 1); }
+    50% { transform: perspective(1000px) rotateX(180deg) rotateY(180deg) scale3d(2, 0.5, 1); }
+    75% { transform: perspective(1000px) rotateX(0deg) rotateY(180deg) scale3d(1, 1, 2); }
+}
+
+@keyframes textGlitch {
+    0% { text-shadow: 2px 2px #ff00c1, -2px -2px #00fff9; }
+    25% { text-shadow: -2px 2px #ffff00, 2px -2px #ff8000; }
+    50% { text-shadow: 2px -2px #00ff00, -2px 2px #ff00ff; }
+    75% { text-shadow: -2px -2px #00ffff, 2px 2px #ff0000; }
+    100% { text-shadow: 2px 2px #ff00c1, -2px -2px #00fff9; }
+}
