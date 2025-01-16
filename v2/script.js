@@ -109,8 +109,11 @@ function revealCell(index) {
     setTimeout(() => {
         cell.classList.add('revealed');
         if (minePositions.includes(index)) {
-            cell.classList.add('mine');
-            endGame(false);
+            // Vérifiez si le jeu est déjà terminé avant d'afficher le message de perte
+            if (!gameOver) {
+                cell.classList.add('mine');
+                endGame(false);
+            }
         } else {
             const mineCount = countAdjacentMines(index);
             if (mineCount > 0) {
